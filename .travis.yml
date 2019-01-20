@@ -1,0 +1,23 @@
+sudo: required
+
+services:
+- docker
+
+env:
+  global:
+    - REPO=michaelvl/kubectl
+    - KUBECTL_VERSION="v1.12.1"
+    - GITCOMMIT=${TRAVIS_COMMIT::7}
+
+script:
+- docker build --build-arg KUBECTL_VERSION=$KUBECTL_VERSION -t $REPO:$KUBECTL_VERSION .
+
+after_script:
+- docker images
+
+before_deploy:
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+
+deploy:
+  provider: script
+  script: docker push $REPO:$TAG && docker push $REPO:latest
