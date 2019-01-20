@@ -16,4 +16,4 @@ jobs:
       - docker build --build-arg KUBECTL_VERSION=$KUBECTL_VERSION -t $REPO:$KUBECTL_VERSION .
       - docker images
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - script: docker push $REPO:$KUBECTL_VERSION && docker push $REPO:latest
+      - docker push $REPO:$KUBECTL_VERSION && docker push $REPO:latest
