@@ -6,7 +6,7 @@ services:
 env:
   global:
     - REPO=michaelvl/kubectl
-    - KUBECTL_VERSION="v1.12.1"
+    - KUBECTL_VERSION="v1.13.2"
     - GITCOMMIT=${TRAVIS_COMMIT::7}
 
 jobs:
