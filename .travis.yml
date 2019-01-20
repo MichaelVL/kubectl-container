@@ -9,15 +9,11 @@ env:
     - KUBECTL_VERSION="v1.12.1"
     - GITCOMMIT=${TRAVIS_COMMIT::7}
 
-script:
-- docker build --build-arg KUBECTL_VERSION=$KUBECTL_VERSION -t $REPO:$KUBECTL_VERSION .
-
-after_script:
-- docker images
-
-before_deploy:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
-deploy:
-  provider: script
-  script: docker push $REPO:$TAG && docker push $REPO:latest
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker build --build-arg KUBECTL_VERSION=$KUBECTL_VERSION -t $REPO:$KUBECTL_VERSION .
+      - docker images
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - script: docker push $REPO:$TAG && docker push $REPO:latest
