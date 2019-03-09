@@ -5,7 +5,7 @@ jobs:
       - image: circleci/python:3.7.1
     environment:
       REPO=michaelvl/kubectl
-      KUBECTL_VERSION="v1.13.2"
+      KUBECTL_VERSION=v1.13.2
     steps:
       - checkout
       - setup_remote_docker
