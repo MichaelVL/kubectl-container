@@ -13,14 +13,11 @@ jobs:
           name: Setup environment variables
           command: |
             echo "REPO=$REPO" >> $BASH_ENV
-            echo 'GITCOMMIT=${CIRCLE_SHA1::7}' >> $BASH_ENV
-            GITCOMMIT=${CIRCLE_SHA1::7}
-            NOW=$(date +%Y%m%d-%H%M)
-            #FULLNAME="$REPO:git-$NOW-$GITCOMMIT"
             FULLNAME="$REPO:$KUBECTL_VERSION"
             echo "FULLNAME=$FULLNAME" >> $BASH_ENV
             echo "Branch $CIRCLE_BRANCH"
             echo "Using full name $FULLNAME"
+            echo "Using version $KUBECTL_VERSION"
       - run:
           name: Build container image
           command: |
