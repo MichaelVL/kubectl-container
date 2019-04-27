@@ -13,8 +13,8 @@ jobs:
           name: Setup environment variables
           command: |
             echo "REPO=$REPO" >> $BASH_ENV
-	    GITCOMMIT=${CIRCLE_SHA1::7}
-	    NOW=$(date +%Y%m%d-%H%M)
+            GITCOMMIT=${CIRCLE_SHA1::7}
+            NOW=$(date +%Y%m%d-%H%M)
             FULLNAME="$REPO:$NOW-$GITCOMMIT-$KUBECTL_VERSION"
             echo "FULLNAME=$FULLNAME" >> $BASH_ENV
             echo "Branch $CIRCLE_BRANCH"
