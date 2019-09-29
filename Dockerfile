@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-ARG KUBECTL_VERSION="v1.13.2"
+ARG KUBECTL_VERSION="v1.16.0"
 ENV KUBECTL_VERSION=$KUBECTL_VERSION
 
 RUN apk add --update ca-certificates && apk add --update -t deps curl \
